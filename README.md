@@ -1,11 +1,8 @@
 # Gifbot
 
-## What?
-
 Gifbot is a lightweight Sinatra app that provides [Slack](http://slack.com/) with embedded keyword search for animated GIFs, using the [Giphy](http://giphy.com/) API, and Slack's webhooks integration. Once setup, you can type `#puppies` in your Slack channel, and Gifbot will post a random animated GIF of adorable puppies to the channel.
 
 ## Seriously?
-
 
 ![image](screenshot.jpg)
 
