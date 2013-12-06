@@ -8,7 +8,7 @@ Gifbot is a lightweight Sinatra app that provides [Slack](http://slack.com/) wit
 
 * Edit `gifbot.rb` and set your `SLACK_TOKEN`. You _must_ do this or Gifbot will ignore all attempts to communicate.
 
-* Optionally, set `GIPHY_KEY` to your Giphy key, if you have one. The provided key is Giphy's public beta token and works out of the box, but they like you to contact them and ask for a real key if you're using Giphy for serious. You can also change the trigger word and the image style.
+* Optionally, set `GIPHY_KEY` to your Giphy key, if you have one. The provided key is Giphy's public beta token and works out of the box, but they like you to [contact them](https://github.com/giphy/GiphyAPI) and ask for a real key if you're using Giphy for serious. You can also change the trigger word and the image style.
 
 * Run `./start_gifbot.sh` on a public webserver, in a screen(1) session or something.
 
