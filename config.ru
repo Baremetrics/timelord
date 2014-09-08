@@ -1,4 +1,4 @@
 $LOAD_PATH << './lib'
-require 'gifbot'
+require 'catbot'
 
-run GifBot::Web
+run CatBot::Web
