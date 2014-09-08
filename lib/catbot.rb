@@ -26,7 +26,8 @@ module CatBot
         halt
       end
       status 200
-      @cats.to_json
+      reply = { username: 'catapi', icon_emoji: ':cat2:', text: @cats.first }
+      return reply.to_json
     end
   end
 end
