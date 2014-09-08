@@ -1,3 +1,3 @@
 require './gifbot'
 
-web: bundle exec rackup
+web: bundle exec rackup -s thin
