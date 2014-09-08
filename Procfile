@@ -1,1 +1,3 @@
-web: bundle exec ruby gifbot.rb
+require './gifbot'
+
+web: bundle exec rackup
