@@ -10,7 +10,7 @@ module CatBot
   class Web < Sinatra::Base
 
     before do
-      return 401 unless request["token"] == SLACK_TOKEN
+      return 401 unless request["token"] == ENV['SLACK_TOKEN']
     end
 
     post "/cat" do
