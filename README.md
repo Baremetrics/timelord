@@ -6,13 +6,15 @@ CatBot is a lightweight Sinatra app that provides [Slack](http://slack.com/) wit
 
 CatBot was originally forked from @schuyler's [gifbot](https://github.com/schuyler/gifbot) before I hacked it up and replaced most of the bits with code from [Descartes'](https://github.com/obfuscurity/descartes) [CAT_MODE handler](https://github.com/obfuscurity/descartes/blob/a13dc9a720dab33e0a8d5e8670bd30f93e0bfdba/lib/descartes/routes/cats.rb).
 
-## Preparation
+## Usage
+
+### Preparation
 
 CatBot uses a Slack [Outgoing WebHooks](https://slack.com/services/new/outgoing-webhook) integration for catching the `#cat` request and firing it to your CatBot service. You'll need to [add a new Outgoing WebHook](https://slack.com/services/new/outgoing-webhook) first so you'll have the `SLACK_TOKEN` available for the actual CatBot deployment steps below.
 
-## Deployment
+### Deployment
 
-### Local
+#### Local
 
 ```
 $ bundle install
@@ -20,7 +22,7 @@ $ export SLACK_TOKEN=...
 $ foreman start
 ```
 
-### Heroku
+#### Heroku
 
 ```
 $ heroku create
@@ -28,7 +30,7 @@ $ heroku config:set SLACK_TOKEN=...
 $ git push heroku master
 ```
 
-## Settings
+### WebHook Settings
 
 Once your CatBot application has been deployed you'll need to go back to your Outgoing Webhook page and update the Integration Settings. Generally speaking you'll want to use settings like these (adjust as necessary):
 
