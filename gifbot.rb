@@ -5,9 +5,9 @@ require 'json'
 require 'net/http'
 require 'sinatra'
 
-SLACK_TOKEN="..."
+SLACK_TOKEN=ENV['SLACK_TOKEN']
 GIPHY_KEY="dc6zaTOxFJmzC"
-TRIGGER_WORD="#"
+TRIGGER_WORD="#gif"
 IMAGE_STYLE="fixed_height" # or "fixed_width" or "original"
 
 post "/gif" do
