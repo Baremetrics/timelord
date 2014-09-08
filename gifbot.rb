@@ -1,6 +1,6 @@
 #ruby
 
-require 'bundler/setup'
+#require 'bundler/setup'
 require 'json'
 require 'net/http'
 require 'sinatra'
