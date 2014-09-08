@@ -1,37 +1,42 @@
-# Gifbot
+# CatBot
 
-Gifbot is a lightweight Sinatra app that provides [Slack](http://slack.com/) with embedded keyword search for animated GIFs, using the [Giphy](http://giphy.com/) API, and Slack's webhooks integration. Once setup, you can type `#puppies` in your Slack channel, and Gifbot will post a random animated GIF of adorable puppies to the channel.
+## Overview
 
-## Seriously?
+CatBot is a lightweight Sinatra app that provides [Slack](http://slack.com/) with a simple bot for fetching individual cat images from [The Cat API](http://thecatapi.com/). Once setup, you can type `#cat` in your Slack channel and CatBot will post a random gif from The Cat API back to the channel.
 
-![image](screenshot.jpg)
+CatBot was originally forked from @schuyler's [gifbot](https://github.com/schuyler/gifbot) before I hacked it up and replaced most of the bits with code from [Descartes'](https://github.com/obfuscurity/descartes) [CAT_MODE handler](https://github.com/obfuscurity/descartes/blob/a13dc9a720dab33e0a8d5e8670bd30f93e0bfdba/lib/descartes/routes/cats.rb).
 
-Yes.
+## Preparation
 
-## Why?
+CatBot uses a Slack [Outgoing WebHooks](https://slack.com/services/new/outgoing-webhook) integration for catching the `#cat` request and firing it to your CatBot service. You'll need to [add a new Outgoing WebHook](https://slack.com/services/new/outgoing-webhook) first so you'll have the `SLACK_TOKEN` available for the actual CatBot deployment steps below.
 
-What better way to celebrate a teammate's _bon mot_, or to herald a successful code deployment, or announce your imminent departure for lunch?
+## Deployment
 
-## How?
+### Local
 
-* Download Gifbot and run `bundle install --path .gems` in the `gifbot` directory. You may need to `sudo gem install bundler` first.
+```
+$ bundle install
+$ export SLACK_TOKEN=...
+$ foreman start
+```
 
-* Set up an outgoing webhook migration in Slack using `http://host:port/gif` as the URL, substituting the host and port that you'll be running the server on. (Unless you tell it otherwise, Sinatra runs on port 4567 by default.) You may opt to configure `#` as the default trigger word for the webhook.
+### Heroku
 
-* Slack will give you an application token for this integration; note it. 
+```
+$ heroku create
+$ heroku config:set SLACK_TOKEN=...
+$ git push heroku master
+```
 
-* Edit `gifbot.rb` and set your `SLACK_TOKEN`. You _must_ do this or Gifbot will ignore all attempts to communicate.
+## Settings
 
-* Optionally, set `GIPHY_KEY` to your Giphy key, if you have one. The provided key is Giphy's public beta token and works out of the box, but they like you to [contact them](https://github.com/giphy/GiphyAPI) and ask for a real key if you're using Giphy for serious. You can also change the trigger word and the image style.
+Once your CatBot application has been deployed you'll need to go back to your Outgoing Webhook page and update the Integration Settings. Generally speaking you'll want to use settings like these (adjust as necessary):
 
-* Run `./start_gifbot.sh` on a public webserver, in a screen(1) session or something. 
+* Channel: `Any`
+* Trigger Word: `#cat`
+* URL: `http://slack-catbot-123.herokuapp.com/cat` (the `/cat` endpoint is mandatory)
+* Label: `catbot`
 
-* Type `#kittens` into your Slack chat and voilà.
+## License
 
-## Are you kidding?
-
-This software took me 20 minutes to write and is released into the public domain. If it breaks, you get to keep _all_ the pieces. Patches welcome, and hugs for everyone.
-
-SDE
-
-__=30=__
+CatBot is distributed under the MIT license.
