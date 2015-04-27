@@ -2,7 +2,7 @@
 
 ## Overview
 
-TimeLord is a lightweight Sinatra app that provides [Slack](http://slack.com/) . Once setup, you can type `#time` in your Slack channel and TimeLord will post the time in various time zones
+TimeLord is a lightweight Sinatra app that provides [Slack](http://slack.com/) . Once setup, you can type `#e,#p,#m,or #c` in your Slack channel and TimeLord will post the time in various time zones
 
 ## Usage
 
