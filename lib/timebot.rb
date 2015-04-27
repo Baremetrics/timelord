@@ -21,8 +21,18 @@ TRIGGER_MAP = {
   '#p' => 'US/Pacific',
   '#m' => 'US/Mountain',
   '#c' => 'US/Central',
-  '#e' => 'US/Eastern'
+  '#e' => 'US/Eastern',
+  '/cdt' => 'US/Central',
+  '/cst' => 'US/Central',
+  '/mdt' => 'US/Mountain',
+  '/mst' => 'US/Mountain',
+  '/pdt' => 'US/Pacific',
+  '/pst' => 'US/Pacific',
+  '/edt' => 'US/Eastern',
+  '/est' => 'US/Eastern'
 }
+
+ZONE MAP
 
 def do_times(trigger, phrase)
   message = nil
