@@ -15,23 +15,34 @@ TIME_ZONES = [
   'US/Pacific',
   'US/Mountain',
   'US/Central',
-  'US/Eastern'
+  'US/Eastern',
+  'UTC'
 ]
 
-def do_times(phrase)
+TRIGGER_MAP = {
+  '#p' => 'US/Pacific',
+  '#m' => 'US/Mountain',
+  '#c' => 'US/Central',
+  '#e' => 'US/Eastern'
+}
+
+def do_times(trigger, phrase)
   message = nil
   emoji = nil
   begin
-    Time.zone = "UTC"
-    Chronic.time_class = Time.zone
     time = Chronic.parse(phrase)
     if time
+      Time.zone = TRIGGER_MAP[trigger] || 'UTC'
+      time = time.in_time_zone(Time.zone)
+      puts "Parsed: #{phrase} #{trigger} -> #{time}"
       times = []
       TIME_ZONES.each do |zone|
         z = TZInfo::Timezone.get(zone)
-        times << time.in_time_zone(z).strftime('%I:%M%P')
+        local_time = time.in_time_zone(z)
+        times << "#{local_time.strftime('%I:%M%P')} #{local_time.zone}"
       end
       message = "> #{times.join(' | ')}"
+      
       h = time.strftime('%I')
       h = h[1] if h.start_with?('0')
       emoji = ":clock#{h}:"
@@ -51,7 +62,7 @@ module TimeBot
     end
 
     get '/time' do
-      message, emoji = do_times(params[:phrase])
+      message, emoji = do_times(params[:trigger], params[:phrase])
       status 200
       
       reply = { username: 'timelord', icon_emoji: emoji, text: message } 
@@ -59,7 +70,7 @@ module TimeBot
     end
     
     post "/time" do
-      message, emoji = do_times(request['text'])
+      message, emoji = do_times(request['trigger_word'],request['text'])
       status 200
       
       reply = { username: 'timelord', icon_emoji: emoji, text: message } 
