@@ -19,7 +19,7 @@ TIME_ZONES = [
 
 TRIGGER_MAP = {
   'US/Pacific' => %w(PDT PST PACIFIC P),
-  'US/Mountian' => %w(MDT MST MOUNTAIN M),
+  'US/Mountain' => %w(MDT MST MOUNTAIN M),
   'US/Central' => %w(CDT CST CENTRAL C),
   'US/Eastern' => %w(EDT EST EASTERN E)
 }
