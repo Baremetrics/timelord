@@ -8,7 +8,7 @@ require 'json'
 require 'chronic'
 require 'active_support/core_ext/time'
 require 'active_support/core_ext/time/zones'
-require 'active_support/cort_ext/string'
+require 'active_support/core_ext/string'
 
 
 TIME_ZONES = [
