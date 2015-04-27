@@ -1,4 +1,4 @@
 $LOAD_PATH << './lib'
-require 'catbot'
+require 'timebot'
 
-run CatBot::Web
+run TimeBot::Web
