@@ -18,32 +18,34 @@ TIME_ZONES = [
 ]
 
 TRIGGER_MAP = {
-  '#p' => 'US/Pacific',
-  '#m' => 'US/Mountain',
-  '#c' => 'US/Central',
-  '#e' => 'US/Eastern',
-  '/cdt' => 'US/Central',
-  '/cst' => 'US/Central',
-  '/mdt' => 'US/Mountain',
-  '/mst' => 'US/Mountain',
-  '/pdt' => 'US/Pacific',
-  '/pst' => 'US/Pacific',
-  '/edt' => 'US/Eastern',
-  '/est' => 'US/Eastern'
+  'US/Pacific' => %w(PDT PST PACIFIC P),
+  'US/Mountian' => %w(MDT MST MOUNTAIN M),
+  'US/Central' => %w(CDT CST CENTRAL C),
+  'US/Eastern' => %w(EDT EST EASTERN E)
 }
 
-ZONE MAP
-
-def do_times(trigger, phrase)
+def do_times(phrase)
   message = nil
   emoji = nil
   begin
-    Time.zone = TRIGGER_MAP[trigger] || 'UTC'
+    zone_identifier = phrase.split.last.try(:upcase)
+    puts "ZONE: #{zone_identifier}"
+    zone = 'UTC'
+    if zone_identifier
+      TRIGGER_MAP.keys.each do |key|
+        if TRIGGER_MAP[key].include?(zone_identifier)
+          zone = key
+          break
+        end
+      end
+    end
+    
+    Time.zone = zone
     Chronic.time_class = Time.zone
     time = Chronic.parse(phrase)
     if time
 #      time = time.in_time_zone(zone)
-      puts "Parsed: #{phrase} #{trigger} -> #{time.strftime('%I:%M%P')} #{time.zone}"
+      puts "Parsed: #{phrase} -> #{time.strftime('%I:%M%P')} #{time.zone}"
       times = []
       TIME_ZONES.each do |zone|
         z = TZInfo::Timezone.get(zone)
@@ -71,7 +73,7 @@ module TimeBot
     end
 
     get '/time' do
-      message, emoji = do_times(params[:trigger], params[:phrase])
+      message, emoji = do_times(params[:text])
       status 200
       
       reply = { username: 'timelord', icon_emoji: emoji, text: message } 
@@ -79,7 +81,7 @@ module TimeBot
     end
     
     post "/time" do
-      message, emoji = do_times(request['trigger_word'],request['text'])
+      message, emoji = do_times(request['text'])
       status 200
       
       reply = { username: 'timelord', icon_emoji: emoji, text: message } 
