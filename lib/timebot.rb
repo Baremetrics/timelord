@@ -2,8 +2,6 @@
 
 require 'bundler/setup'
 require 'sinatra'
-require 'nokogiri'
-require 'open-uri'
 require 'json'
 require 'chronic'
 require 'active_support/core_ext/time'
@@ -30,11 +28,12 @@ def do_times(trigger, phrase)
   message = nil
   emoji = nil
   begin
+    Time.zone = TRIGGER_MAP[trigger] || 'UTC'
+    Chronic.time_class = Time.zone
     time = Chronic.parse(phrase)
     if time
-      Time.zone = TRIGGER_MAP[trigger] || 'UTC'
-      time = time.in_time_zone(Time.zone)
-      puts "Parsed: #{phrase} #{trigger} -> #{time}"
+#      time = time.in_time_zone(zone)
+      puts "Parsed: #{phrase} #{trigger} -> #{time.strftime('%I:%M%P')} #{time.zone}"
       times = []
       TIME_ZONES.each do |zone|
         z = TZInfo::Timezone.get(zone)
