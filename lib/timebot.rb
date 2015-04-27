@@ -18,17 +18,17 @@ TIME_ZONES = [
 ]
 
 TRIGGER_MAP = {
-  'US/Pacific' => %w(PDT PST PACIFIC P),
-  'US/Mountain' => %w(MDT MST MOUNTAIN M),
-  'US/Central' => %w(CDT CST CENTRAL C),
-  'US/Eastern' => %w(EDT EST EASTERN E)
+  'US/Pacific' => %w(PDT PST PACIFIC P #P),
+  'US/Mountain' => %w(MDT MST MOUNTAIN M #M),
+  'US/Central' => %w(CDT CST CENTRAL C #C),
+  'US/Eastern' => %w(EDT EST EASTERN E #E)
 }
 
 def do_times(phrase)
   message = nil
   emoji = nil
   begin
-    zone_identifier = phrase.split.last.try(:upcase)
+    zone_identifier = phrase.split.first.try(:upcase)
     puts "ZONE: #{zone_identifier}"
     zone = 'UTC'
     if zone_identifier
@@ -44,7 +44,6 @@ def do_times(phrase)
     Chronic.time_class = Time.zone
     time = Chronic.parse(phrase)
     if time
-#      time = time.in_time_zone(zone)
       puts "Parsed: #{phrase} -> #{time.strftime('%I:%M%P')} #{time.zone}"
       times = []
       TIME_ZONES.each do |zone|
