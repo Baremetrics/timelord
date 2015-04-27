@@ -19,7 +19,7 @@ TIME_ZONES = [
 ]
 
 
-module Time
+module TimeBot
   class Web < Sinatra::Base
 
     before do
