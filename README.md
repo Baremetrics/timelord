@@ -8,7 +8,7 @@ TimeLord is a lightweight Sinatra app that provides [Slack](http://slack.com/) .
 
 ### Preparation
 
-TimeLord uses a Slack [Outgoing WebHooks](https://slack.com/services/new/outgoing-webhook) integration for timeching the `#time` request and firing it to your TimeLord service. You'll need to [add a new Outgoing WebHook](https://slack.com/services/new/outgoing-webhook) first so you'll have the `SLACK_TOKEN` available for the actual TimeLord deployment steps below.
+TimeLord uses a Slack [Outgoing WebHooks](https://slack.com/services/new/outgoing-webhook) integration for catching the `#e,#p,#m,or #c` request and firing it to your TimeLord service. You'll need to [add a new Outgoing WebHook](https://slack.com/services/new/outgoing-webhook) first so you'll have the `SLACK_TOKEN` available for the actual TimeLord deployment steps below.
 
 ### Deployment
 
