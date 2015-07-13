@@ -7,6 +7,8 @@ TimeLord is a lightweight Sinatra app that provides [Slack](http://slack.com/). 
 
 At [Baremetrics](https://baremetrics.com), we're a distributed team (spanning six different timezones) so when we mention various times in Slack, it can get confusing about what time that means for each person. TimeLord solves that.
 
+![TimeLord Example](https://s3.amazonaws.com/f.cl.ly/items/0g1G0u2B2e000e3m0P1s/timelord.png)
+
 ## Usage
 
 ### Preparation
