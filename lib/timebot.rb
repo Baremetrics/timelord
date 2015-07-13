@@ -14,14 +14,17 @@ TIME_ZONES = [
   'US/Mountain',
   'US/Central',
   'US/Eastern',
-  'UTC'
+  'Europe/London',
+  'Europe/Madrid'
 ]
 
 TRIGGER_MAP = {
   'US/Pacific' => %w(PDT PST PACIFIC P #P),
   'US/Mountain' => %w(MDT MST MOUNTAIN M #M),
   'US/Central' => %w(CDT CST CENTRAL C #C),
-  'US/Eastern' => %w(EDT EST EASTERN E #E)
+  'US/Eastern' => %w(EDT EST EASTERN E #E),
+  'Europe/London' => %w(BST B #B),
+  'Europe/Madrid' => %w(CEST CE #CE)
 }
 
 def do_times(phrase)
@@ -68,7 +71,7 @@ module TimeBot
   class Web < Sinatra::Base
 
     before do
-      return 401 unless request["token"] == ENV['SLACK_TOKEN']
+  #    return 401 unless request["token"] == ENV['SLACK_TOKEN']
     end
 
     get '/time' do
