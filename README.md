@@ -1,8 +1,13 @@
-# TimeLord
+# TimeLord by [Baremetrics](https://baremetrics.com)
+_[Baremetrics](https://baremetrics.com) provides one-click analytics & insights for Stripe. **[Get started today!](https://baremetrics.com)**_
 
 ## Overview
 
-TimeLord is a lightweight Sinatra app that provides [Slack](http://slack.com/) . Once setup, you can type `#e,#p,#m,or #c` in your Slack channel and TimeLord will post the time in various time zones
+TimeLord is a lightweight Sinatra app that provides [Slack](http://slack.com/). Once setup, you can type `#e,#p,#m,or #c` in your Slack channel and TimeLord will post the time in various time zones.
+
+At [Baremetrics](https://baremetrics.com), we're a distributed team (spanning six different timezones) so when we mention various times in Slack, it can get confusing about what time that means for each person. TimeLord solves that.
+
+![TimeLord Example](https://s3.amazonaws.com/f.cl.ly/items/0g1G0u2B2e000e3m0P1s/timelord.png)
 
 ## Usage
 
