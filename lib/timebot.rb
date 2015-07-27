@@ -32,6 +32,7 @@ def do_times(phrase)
   emoji = nil
   begin
     zone_identifier = phrase.split.first.try(:upcase)
+    zone_identifier = zone_identifier[1..99] if zone_identifier[0] == '#' 
     puts "ZONE: #{zone_identifier}"
     zone = 'UTC'
     if zone_identifier
