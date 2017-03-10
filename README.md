@@ -35,7 +35,7 @@ $ git push heroku master
 
 ### WebHook Settings
 
-Once your TimeLord applitimeion has been deployed you'll need to go back to your Outgoing Webhook page and update the Integration Settings. Generally speaking you'll want to use settings like these (adjust as necessary):
+Once your TimeLord application has been deployed you'll need to go back to your Outgoing Webhook page and update the Integration Settings. Generally speaking you'll want to use settings like these (adjust as necessary):
 
 * Channel: `Any`
 * Trigger Word: `#time`
